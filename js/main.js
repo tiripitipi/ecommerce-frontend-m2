@@ -77,3 +77,17 @@ function agregarAlCarrito(id, nombre, precio) {
   guardarCarrito();
   alert(`✅ "${nombre}" agregado al carrito`);
 }
+
+
+// HOME - botones y eventos
+
+// Busca todos los botones "Agregar" y les asigna el evento click
+const botonesAgregar = document.querySelectorAll(".agregar-carrito");
+botonesAgregar.forEach(boton => {
+  boton.addEventListener("click", function() {
+    const id = parseInt(this.dataset.id);
+    const nombre = this.dataset.nombre;
+    const precio = parseInt(this.dataset.precio);
+    agregarAlCarrito(id, nombre, precio);
+  });
+});
