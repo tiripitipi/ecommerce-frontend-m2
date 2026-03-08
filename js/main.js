@@ -91,3 +91,31 @@ botonesAgregar.forEach(boton => {
     agregarAlCarrito(id, nombre, precio);
   });
 });
+
+// PÁGINA DETALLE - carga del producto
+
+// Verifica si estamos en detalle.html
+if (document.getElementById("detalle-nombre")) {
+
+  // Lee el id de la URL
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get("id"));
+
+  // Busca el producto por su id
+  const producto = productos.find(p => p.id === id);
+
+  if (producto) {
+    // Llena la página con los datos del producto
+    document.getElementById("detalle-nombre").textContent = producto.nombre;
+    document.getElementById("detalle-descripcion").textContent = producto.descripcion;
+    document.getElementById("detalle-precio").textContent = "$" + producto.precio.toLocaleString("es-CL");
+    document.getElementById("detalle-imagen").src = producto.imagen;
+    document.getElementById("detalle-imagen").alt = producto.nombre;
+    document.title = producto.nombre + " – El Rincón del Tenis";
+
+    // Botón agregar al carrito
+    document.getElementById("btn-agregar").addEventListener("click", function() {
+      agregarAlCarrito(producto.id, producto.nombre, producto.precio);
+    });
+  }
+}
