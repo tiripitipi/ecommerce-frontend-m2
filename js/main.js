@@ -46,3 +46,34 @@ const productos = [
     imagen: "img/antivibrador-head.webp"
   }
 ];
+
+
+// CARRITO - guardado en localStorage
+
+// Carga el carrito desde localStorage o empieza vacío
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+// Guarda el carrito y actualiza el contador
+function guardarCarrito() {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  actualizarContador();
+}
+
+// Actualiza el numerito del badge en la navbar
+function actualizarContador() {
+  const total = carrito.reduce((suma, item) => suma + item.cantidad, 0);
+  const badges = document.querySelectorAll("#cart-count");
+  badges.forEach(badge => badge.textContent = total);
+}
+
+// Agrega un producto al carrito
+function agregarAlCarrito(id, nombre, precio) {
+  const existe = carrito.find(item => item.id === id);
+  if (existe) {
+    existe.cantidad++;
+  } else {
+    carrito.push({ id, nombre, precio, cantidad: 1 });
+  }
+  guardarCarrito();
+  alert(`✅ "${nombre}" agregado al carrito`);
+}
