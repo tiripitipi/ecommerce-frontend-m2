@@ -92,7 +92,7 @@ botonesAgregar.forEach(boton => {
   });
 });
 
-// PÁGINA DETALLE - carga del producto
+// DETALLE - carga del producto
 
 // Verifica si estamos en detalle.html
 if (document.getElementById("detalle-nombre")) {
