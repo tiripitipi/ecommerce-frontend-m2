@@ -119,3 +119,68 @@ if (document.getElementById("detalle-nombre")) {
     });
   }
 }
+
+// CARRITO - muestra los productos
+
+if (document.getElementById("carrito-container")) {
+
+  function renderizarCarrito() {
+    const container = document.getElementById("carrito-container");
+    const totalEl = document.getElementById("carrito-total");
+
+    if (carrito.length === 0) {
+      container.innerHTML = "<p class='text-muted'>Tu carrito está vacío.</p>";
+      totalEl.textContent = "$0";
+      return;
+    }
+
+    // tabla de productos
+    let html = '<div class="list-group">';
+    let total = 0;
+
+    carrito.forEach(item => {
+      const subtotal = item.precio * item.cantidad;
+      total += subtotal;
+      html += `
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <h6 class="mb-0">${item.nombre}</h6>
+            <small class="text-muted">$${item.precio.toLocaleString("es-CL")} x ${item.cantidad}</small>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span class="fw-bold text-success">$${subtotal.toLocaleString("es-CL")}</span>
+            <button class="btn btn-outline-danger btn-sm btn-eliminar" data-id="${item.id}">✕</button>
+          </div>
+        </div>
+      `;
+    });
+
+    html += "</div>";
+    container.innerHTML = html;
+    totalEl.textContent = "$" + total.toLocaleString("es-CL");
+
+    // Botones eliminar producto
+    document.querySelectorAll(".btn-eliminar").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const id = parseInt(this.dataset.id);
+        carrito = carrito.filter(item => item.id !== id);
+        guardarCarrito();
+        renderizarCarrito();
+      });
+    });
+  }
+
+  // Botón vaciar carrito completo
+  document.getElementById("btn-vaciar").addEventListener("click", function() {
+    if (confirm("¿Seguro que quieres vaciar el carrito?")) {
+      carrito = [];
+      guardarCarrito();
+      renderizarCarrito();
+    }
+  });
+
+  renderizarCarrito();
+}
+
+// Actualiza el contador al cargar cualquier página
+actualizarContador();
