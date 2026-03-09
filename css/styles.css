@@ -5,20 +5,104 @@
   box-sizing: border-box;
 }
 
+/* Variables de color */
+:root {
+  --verde-oscuro: #1a3a2a;
+  --verde-medio: #2d5a3d;
+  --verde-acento: #4a8c5c;
+  --amarillo-pelota: #c8ff00;
+  --negro: #0d0d0d;
+}
+
+/* Footer siempre abajo */
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 main {
   flex: 1;
 }
 
-/* Altura fija para imágenes de cards */
+/* Navbar personalizada */
+.navbar {
+  background-color: var(--negro) !important;
+  border-bottom: 3px solid var(--verde-acento);
+}
+
+.navbar-brand {
+  color: var(--amarillo-pelota) !important;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  color: #ffffff !important;
+}
+
+.nav-link:hover {
+  color: var(--amarillo-pelota) !important;
+}
+
+/* Badge del carrito */
+.badge {
+  background-color: var(--amarillo-pelota) !important;
+  color: var(--negro) !important;
+}
+
+/* Títulos principales */
+h1 {
+  color: var(--verde-oscuro);
+  font-weight: 700;
+}
+
+h2 {
+  color: var(--verde-medio);
+  font-weight: 600;
+}
+
+/* Cards */
+.card {
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
+}
+
+/* Imágenes de cards */
 .card-img-top {
   height: 200px;
   object-fit: contain;
   background-color: #f8f9fa;
   padding: 10px;
+  border-radius: 12px 12px 0 0;
+}
+
+/* Precios */
+.text-success {
+  color: var(--verde-acento) !important;
+}
+
+/* Botón agregar */
+.btn-warning {
+  background-color: var(--amarillo-pelota) !important;
+  border: none !important;
+  color: var(--negro) !important;
+  font-weight: 600;
+}
+
+.btn-warning:hover {
+  background-color: #aadd00 !important;
+}
+
+/* Footer */
+footer {
+  background-color: var(--negro) !important;
+  border-top: 3px solid var(--verde-acento);
 }
