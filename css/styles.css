@@ -5,6 +5,16 @@
   box-sizing: border-box;
 }
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
 /* Altura fija para imágenes de cards */
 .card-img-top {
   height: 200px;
